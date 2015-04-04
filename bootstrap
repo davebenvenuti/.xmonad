@@ -1,3 +1,13 @@
 #!/bin/bash
 
+sudo apt-get install -y xmonad xmobar stalonetray xautolock xscreensaver imwheel xfce4-power-manager feh
+
+echo 'Cloning xmonad-pulsevolume'
+git clone git@github.com:bchurchill/xmonad-pulsevolume.git ~/.xmonad-pulsevolume
+
+echo 'Symlinking xmobar config...'
+ln -sf `readlink -f xmobarrc` ~/.xmobarrc
+
+echo 'Symlinking stalonebar config...'
 ln -s `readlink -f ./stalonetrayrc` ~/.stalonetrayrc
+
