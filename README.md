@@ -17,3 +17,5 @@ Switch Workspaces: CTRL-ALT-[left arrow/right arrow]
 Lock Screen: CTRL-L
 
 Everything else is xmonad standard, with the exception that alt1 is mapped to super
+
+https://wiki.haskell.org/File:Xmbindings.png
