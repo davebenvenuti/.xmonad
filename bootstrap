@@ -6,7 +6,7 @@ echo 'Cloning xmonad-pulsevolume'
 git clone git@github.com:bchurchill/xmonad-pulsevolume.git ~/.xmonad-pulsevolume
 
 echo 'Symlinking xmobar config...'
-ln -sf `readlink -f xmobarrc` ~/.xmobarrc
+ln -sf `readlink -f ./xmobarrc` ~/.xmobarrc
 
 echo 'Symlinking stalonebar config...'
 ln -s `readlink -f ./stalonetrayrc` ~/.stalonetrayrc
