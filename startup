@@ -3,6 +3,9 @@
 # Network Manager
 nm-applet &
 
+# XComposite
+xcompmgr -c &
+
 # Screensaver
 #   other options:
 #     cinnamon-settings-daemon

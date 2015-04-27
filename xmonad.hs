@@ -13,6 +13,11 @@ import XMonad.Util.EZConfig(additionalKeys)
 import Graphics.X11.ExtraTypes.XF86
 import System.IO
 import XMonad.Actions.CycleWS
+import XMonad.Hooks.FadeInactive
+
+fadeLogHook :: X ()
+fadeLogHook = fadeInactiveLogHook fadeAmount
+  where fadeAmount = 0.8
 
 myManagementHooks :: [ManageHook]
 myManagementHooks = [
@@ -28,7 +33,8 @@ main = do
     { modMask = mod4Mask -- rebind mod to special
     , manageHook = manageDocks <+> manageHook defaultConfig <+> composeAll myManagementHooks
     , layoutHook = avoidStruts  $  layoutHook defaultConfig
-    , logHook = dynamicLogWithPP xmobarPP
+--    , logHook = dynamicLogWithPP xmobarPP
+    , logHook = fadeLogHook <+> dynamicLogWithPP xmobarPP
       { ppOutput = hPutStrLn xmproc
       , ppTitle = xmobarColor "green" "" . shorten 50
       }
