@@ -13,7 +13,7 @@ gnome-screensaver &
 xfce4-power-manager --no-daemon &
 
 # Background cycler
-~/.dotfiles/scripts/background_cycler.sh &
+~/.xmonad/scripts/background_cycler.sh &
 
 # Disable touchpad tap click
 xinput set-prop "SynPS/2 Synaptics TouchPad" "Synaptics Tap Action" 0 &

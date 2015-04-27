@@ -10,7 +10,6 @@
 --        , alignSep = "}{"
 --        , template = "%StdinReader% }{ <fc=#00FF00>%uname%</fc> * <fc=#FF0000>%theDate%</fc>"
 --        }
-
 Config { font = "xft:Monospace:size=15"
        , bgColor = "black"
        , fgColor = "grey"
@@ -22,8 +21,9 @@ Config { font = "xft:Monospace:size=15"
 --                    , Run Com "uname" ["-s","-r"] "" 36000
                     , Run Date "%a %b %_d %Y %I:%M:%S%p" "date" 10
                     , Run StdinReader
-                    , Run Com "bash" ["-l", "/home/dave/.dotfiles/scripts/current_volume.sh"] "vol" 1
-                    , Run Com "python" ["/home/dave/.dotfiles/scripts/battery_remaining.py", "0"] "bat" 1
+-- TODO figure out how to not have to hard code the home directory name                      
+                    , Run Com "/home/dave/.xmonad/scripts/current_volume.sh" [] "vol" 1
+                    , Run Com "python" ["/home/dave/.xmonad/scripts/battery_remaining.py", "0"] "bat" 1
                     ]
        , sepChar = "%"
        , alignSep = "}{"
