@@ -25,7 +25,7 @@ myManagementHooks = [
       ]
 
 main = do
-  xmproc <- spawnPipe "xmobar"
+  xmproc <- spawnPipe "PATH=~/.xmonad/scripts:$PATH xmobar"
 
   spawn "~/.xmonad/startup"
 
