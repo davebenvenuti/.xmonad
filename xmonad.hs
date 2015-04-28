@@ -14,6 +14,9 @@ import Graphics.X11.ExtraTypes.XF86
 import System.IO
 import XMonad.Actions.CycleWS
 import XMonad.Hooks.FadeInactive
+import XMonad.Layout.PerWorkspace
+import XMonad.Layout.SimplestFloat
+import XMonad.Hooks.SetWMName
 
 fadeLogHook :: X ()
 fadeLogHook = fadeInactiveLogHook fadeAmount
@@ -32,12 +35,13 @@ main = do
   xmonad $ defaultConfig
     { modMask = mod4Mask -- rebind mod to special
     , manageHook = manageDocks <+> manageHook defaultConfig <+> composeAll myManagementHooks
-    , layoutHook = avoidStruts  $  layoutHook defaultConfig
+    , layoutHook = onWorkspace "float" simplestFloat $ avoidStruts  $  layoutHook defaultConfig
 --    , logHook = dynamicLogWithPP xmobarPP
     , logHook = fadeLogHook <+> dynamicLogWithPP xmobarPP
       { ppOutput = hPutStrLn xmproc
       , ppTitle = xmobarColor "green" "" . shorten 50
       }
+    , startupHook = setWMName "LG3D" -- for java
     } `additionalKeys`
     [ ((mod1Mask .|. controlMask, xK_Right), nextWS)
     , ((mod1Mask .|. controlMask, xK_Left), prevWS)
