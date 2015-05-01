@@ -1,7 +1,8 @@
 My xmonad config
+================
 
 Setup
-=====
+-----
 
 ```
 git clone git@github.com:davebenvenuti/.xmonad.git ~/.xmonad
@@ -10,7 +11,7 @@ cd ~/.xmonad
 ```
 
 Keybindings
-===========
+-----------
 
 Switch Workspaces: CTRL-ALT-[left arrow/right arrow]
 
