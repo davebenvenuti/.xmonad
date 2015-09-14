@@ -4,6 +4,7 @@
 --   https://wiki.haskell.org/Xmonad/Config_archive/John_Goerzen's_Configuration
 --   https://github.com/Emantor/configs/blob/master/xmonad/xmonad.hs
 --   http://askubuntu.com/questions/403113/how-do-you-enable-tap-to-click-via-command-line-with-xmodmap
+--   https://wiki.haskell.org/Xmonad/Using_xmonad_in_KDE
 
 import XMonad
 import XMonad.Hooks.DynamicLog
@@ -17,6 +18,8 @@ import XMonad.Hooks.FadeInactive
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.SimplestFloat
 import XMonad.Hooks.SetWMName
+import XMonad.Layout.Fullscreen
+import XMonad.Hooks.ManageHelpers
 
 fadeLogHook :: X ()
 fadeLogHook = fadeInactiveLogHook fadeAmount
@@ -24,7 +27,10 @@ fadeLogHook = fadeInactiveLogHook fadeAmount
 
 myManagementHooks :: [ManageHook]
 myManagementHooks = [
-    resource =? "stalonetray" --> doIgnore
+    resource =? "stalonetray" --> doIgnore,
+    -- to get window classNames:
+    --   https://wiki.haskell.org/Xmonad/Using_xmonad_in_KDE
+    className =? "Civ5XP" --> doFullFloat
       ]
 
 main = do
@@ -36,6 +42,9 @@ main = do
     { modMask = mod4Mask -- rebind mod to special
     , manageHook = manageDocks <+> manageHook defaultConfig <+> composeAll myManagementHooks
     , layoutHook = onWorkspace "float" simplestFloat $ avoidStruts  $  layoutHook defaultConfig
+    , handleEventHook =
+        handleEventHook defaultConfig <+> fullscreenEventHook
+        -- i don't remember what this logHook was for
 --    , logHook = dynamicLogWithPP xmobarPP
     , logHook = fadeLogHook <+> dynamicLogWithPP xmobarPP
       { ppOutput = hPutStrLn xmproc
