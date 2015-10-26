@@ -34,7 +34,13 @@ runOnce xinput set-prop "SynPS/2 Synaptics TouchPad" "Device Accel Constant Dece
 runOnce stalonetray
 
 # Shutter for screenshots
-runOnce shutter
+runOnce shutter --min_at_startup
+
+# Pidgin
+runOnce pidgin
+
+# Chromium
+runOnce chromium-browser
 
 if [ -e ./startup-private ]; then
   ./startup-private
