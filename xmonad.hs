@@ -58,6 +58,9 @@ main = do
   xmproc <- spawnPipe "PATH=~/.xmonad/scripts:$PATH xmobar"
 
   spawn "~/.xmonad/startup"
+  -- spawnOn appears to be broken, but since we want to start gnome-terminal on
+  -- our first workspace anyway, this hackishly works for now
+  spawn "gnome-terminal"
 
   xmonad $ defaultConfig
     {
