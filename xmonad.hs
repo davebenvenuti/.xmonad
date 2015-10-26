@@ -22,7 +22,6 @@ import XMonad.Layout.Fullscreen
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.IM
 import Data.Ratio ((%))
-import XMonad.Layout.Grid
 import XMonad.Layout.Spacing
 
 fadeLogHook :: X ()
