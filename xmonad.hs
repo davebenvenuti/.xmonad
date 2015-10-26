@@ -20,18 +20,40 @@ import XMonad.Layout.SimplestFloat
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.Fullscreen
 import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.IM
+import Data.Ratio ((%))
+import XMonad.Layout.Grid
+import XMonad.Layout.Spacing
 
 fadeLogHook :: X ()
 fadeLogHook = fadeInactiveLogHook fadeAmount
   where fadeAmount = 0.8
 
-myManagementHooks :: [ManageHook]
-myManagementHooks = [
+pidginTall = Tall 1 0.02  0.5
+pidginLayout = withIM (1%7) (Role "buddy_list") pidginTall
+
+management :: [ManageHook]
+management = [
     resource =? "stalonetray" --> doIgnore,
     -- to get window classNames:
-    --   https://wiki.haskell.org/Xmonad/Using_xmonad_in_KDE
-    className =? "Civ5XP" --> doFullFloat
+    --   (from https://wiki.haskell.org/Xmonad/Using_xmonad_in_KDE)
+    --   - Open the application.
+    --   - Enter the command xprop | grep WM_CLASS in a terminal window on the same desktop.
+    --   - Click on the application window.
+    --   - Read the class name in the terminal window. The class name is the second of the two quoted strings displayed, usually capitalized. The first one is resource, usually lower case.
+    className =? "Civ5XP" --> doFullFloat,
+    className =? "Diablo III.exe" --> doFullFloat,
+    className =? "SC2.exe" --> doFullFloat,
+    (appName =? "Qt-subapplication" <&&> className =? "VirtualBox") --> doFullFloat,
+    className =? "Pidgin" --> doShift "3",
+    className =? "Chromium-browser" --> doShift "2",
+    className =? "Firefox" --> doShift "2"
       ]
+
+layout = avoidStruts
+         $ onWorkspace "float" simplestFloat
+         $ onWorkspace "3" pidginLayout
+         $ layoutHook defaultConfig
 
 main = do
   xmproc <- spawnPipe "PATH=~/.xmonad/scripts:$PATH xmobar"
@@ -39,25 +61,23 @@ main = do
   spawn "~/.xmonad/startup"
 
   xmonad $ defaultConfig
-    { modMask = mod4Mask -- rebind mod to special
-    , manageHook = manageDocks <+> manageHook defaultConfig <+> composeAll myManagementHooks
-    , layoutHook = onWorkspace "float" simplestFloat $ avoidStruts  $  layoutHook defaultConfig
-    , handleEventHook =
-        handleEventHook defaultConfig <+> fullscreenEventHook
-        -- i don't remember what this logHook was for
---    , logHook = dynamicLogWithPP xmobarPP
-    , logHook = fadeLogHook <+> dynamicLogWithPP xmobarPP
-      { ppOutput = hPutStrLn xmproc
-      , ppTitle = xmobarColor "green" "" . shorten 50
-      }
-    , startupHook = setWMName "LG3D" -- for java
+    {
+      modMask = mod4Mask, -- rebind mod to special
+      manageHook = manageDocks <+> manageHook defaultConfig <+> composeAll management,
+      layoutHook = layout,
+      handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook,
+      logHook = fadeLogHook <+> dynamicLogWithPP xmobarPP {
+        ppOutput = hPutStrLn xmproc,
+        ppTitle = xmobarColor "green" "" . shorten 50
+        },
+      startupHook = setWMName "LG3D" -- for java
     } `additionalKeys`
-    [ ((mod1Mask .|. controlMask, xK_Right), nextWS)
-    , ((mod1Mask .|. controlMask, xK_Left), prevWS)
-    --, ((mod1Mask .|. controlMask, xK_l), spawn "cinnamon-screensaver-command -l && xset dpms force off")
-    , ((mod1Mask .|. controlMask, xK_l), spawn "gnome-screensaver-command -l && xset dpms force off")
-    --, ((mod1Mask .|. controlMask, xK_l), spawn "xscreensaver-command -lock && xset dpms force off")
-    , ((0 , xF86XK_AudioLowerVolume), spawn "~/.xmonad-pulsevolume/pulse-volume.sh decrease")
-    , ((0 , xF86XK_AudioRaiseVolume), spawn "~/.xmonad-pulsevolume/pulse-volume.sh increase")
+
+    [
+      ((mod1Mask .|. controlMask, xK_Right), nextWS),
+      ((mod1Mask .|. controlMask, xK_Left), prevWS),
+      ((mod1Mask .|. controlMask, xK_l), spawn "gnome-screensaver-command -l && xset dpms force off"),
+      ((0 , xF86XK_AudioLowerVolume), spawn "~/.xmonad-pulsevolume/pulse-volume.sh decrease"),
+      ((0 , xF86XK_AudioRaiseVolume), spawn "~/.xmonad-pulsevolume/pulse-volume.sh increase")
     ]
 
