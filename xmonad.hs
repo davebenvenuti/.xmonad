@@ -46,7 +46,8 @@ management = [
     (appName =? "Qt-subapplication" <&&> className =? "VirtualBox") --> doFullFloat,
     className =? "Pidgin" --> doShift "3",
     className =? "Chromium-browser" --> doShift "2",
-    className =? "Firefox" --> doShift "2"
+    className =? "Firefox" --> doShift "2",
+    className =? "java-lang-Thread" --> doShift "4"
       ]
 
 layout = avoidStruts
