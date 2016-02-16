@@ -39,8 +39,8 @@ runOnce shutter --min_at_startup
 # Pidgin
 runOnce pidgin
 
-# Chromium
-runOnce chromium-browser
+# Firefox
+runOnce firefox
 
 if [ -e ./startup-private ]; then
   ./startup-private
