@@ -44,6 +44,7 @@ management = [
     className =? "Diablo III.exe" --> doFullFloat,
     className =? "SC2.exe" --> doFullFloat,
     (appName =? "Qt-subapplication" <&&> className =? "VirtualBox") --> doFullFloat,
+    appName =? "This War of Mine" --> doFullFloat,
     className =? "Pidgin" --> doShift "3",
     className =? "chromium-browser" --> doShift "2",
     className =? "Firefox" --> doShift "2",
