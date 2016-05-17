@@ -50,7 +50,7 @@ management = [
     className =? "Firefox" --> doShift "2",
     className =? "java-lang-Thread" --> doShift "5",
     className =? "Battle.net.exe" --> doShift "4",
-    className =? "Hearthstone.exe" --> doShift "4",
+    className =? "Hearthstone.exe" --> doShift "4"
       ]
 
 layout = avoidStruts
