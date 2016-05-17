@@ -48,7 +48,9 @@ management = [
     className =? "Pidgin" --> doShift "3",
     className =? "chromium-browser" --> doShift "2",
     className =? "Firefox" --> doShift "2",
-    className =? "java-lang-Thread" --> doShift "5"
+    className =? "java-lang-Thread" --> doShift "5",
+    className =? "Battle.net.exe" --> doShift "4",
+    className =? "Hearthstone.exe" --> doShift "4",
       ]
 
 layout = avoidStruts
@@ -84,4 +86,3 @@ main = do
       ((0 , xF86XK_AudioLowerVolume), spawn "~/.xmonad-pulsevolume/pulse-volume.sh decrease"),
       ((0 , xF86XK_AudioRaiseVolume), spawn "~/.xmonad-pulsevolume/pulse-volume.sh increase")
     ]
-
