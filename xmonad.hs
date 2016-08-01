@@ -47,6 +47,7 @@ management = [
     appName =? "This War of Mine" --> doFullFloat,
     className =? "Pidgin" --> doShift "3",
     className =? "chromium-browser" --> doShift "2",
+    className =? "brave" --> doShift "2",    
     className =? "Firefox" --> doShift "2",
     className =? "java-lang-Thread" --> doShift "5",
     className =? "Battle.net.exe" --> doShift "4",
