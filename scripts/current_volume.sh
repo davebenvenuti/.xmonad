@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-lsb_release -a | grep "xenial" > /dev/null
+lsb_release -a | grep "yakkety" > /dev/null
 
 if [ "$?" == "0" ]; then
     pactl list sinks | grep -A10 analog-stereo | grep -P '^\W+Volume:' | grep -Po '\d{1,3}%' | head -1
