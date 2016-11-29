@@ -2,11 +2,11 @@
 
 import sys
 
-current_fd = open('/sys/class/power_supply/BAT0/charge_now', 'r')
+current_fd = open('/sys/class/power_supply/BAT0/energy_now', 'r')
 current = current_fd.read()
 current_fd.close()
 
-full_fd = open('/sys/class/power_supply/BAT0/charge_full', 'r')
+full_fd = open('/sys/class/power_supply/BAT0/energy_full', 'r')
 full = full_fd.read()
 full_fd.close()
 
