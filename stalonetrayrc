@@ -8,8 +8,6 @@ max_geometry 5x1-0+0
 #background "#000000"
 # Doesn't appear in a task bar (not a problem for us?)
 #skip_taskbar
-# Icons are 12 pixels high
-#icon_size 12
 #kludges force_icons_size
 # Tell xmonad "Stand back, I got this"
 #window_strut none
@@ -17,13 +15,13 @@ max_geometry 5x1-0+0
 decorations none
 transparent false
 dockapp_mode none
-geometry 5x1-0+0
-max_geometry 5x1-0+0
+geometry 7x1-0+0
+max_geometry 7x1-0+0
 background "#000000"
 kludges force_icons_size
 grow_gravity NE
 icon_gravity NE
-icon_size 25
+icon_size 48
 sticky true
 #window_strut none
 window_type dock
