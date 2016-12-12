@@ -7,7 +7,7 @@ Config { font = "xft:Monospace:size=15"
                     , Run StdinReader
                     , Run Com "current_volume.sh" [] "vol" 1
                     , Run Com "/home/dave/.xmonad/scripts/battery_remaining.py" ["0"] "bat" 1
-                    , Run Com "prime-select" ["query"] "videoCard" 1
+                    , Run Com "prime-select" ["query"] "videoCard" 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
