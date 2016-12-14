@@ -39,8 +39,8 @@ runOnce shutter --min_at_startup
 # Pidgin
 runOnce pidgin
 
-# Chromium
-runOnce chromium
+# Default Browser
+runOnce `update-alternatives --query x-www-browser | grep "Value:" | awk '{print $2}'`
 
 # Gnome Authentication Agent so apps can request sudo access
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
