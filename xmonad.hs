@@ -23,6 +23,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.IM
 import Data.Ratio ((%))
 import XMonad.Layout.Spacing
+import XMonad.Hooks.EwmhDesktops
 
 fadeLogHook :: X ()
 fadeLogHook = fadeInactiveLogHook fadeAmount
@@ -72,8 +73,8 @@ main = do
       modMask = mod4Mask, -- rebind mod to special
       manageHook = manageDocks <+> manageHook defaultConfig <+> composeAll management,
       layoutHook = layout,
-      handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook,
-      logHook = fadeLogHook <+> dynamicLogWithPP xmobarPP {
+      handleEventHook = handleEventHook defaultConfig <+> XMonad.Layout.Fullscreen.fullscreenEventHook <+> ewmhDesktopsEventHook,
+      logHook = ewmhDesktopsLogHook <+> fadeLogHook <+> dynamicLogWithPP xmobarPP {
         ppOutput = hPutStrLn xmproc,
         ppTitle = xmobarColor "green" "" . shorten 50
         },
