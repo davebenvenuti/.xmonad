@@ -17,7 +17,7 @@ runOnce xcompmgr -c
 #     cinnamon-settings-daemon
 #     xscreensaver -no-splash
 runOnce gnome-screensaver
-  
+
 # xfce4-power-manager sometimes conflicts with the indicator-power package
 runOnce xfce4-power-manager --no-daemon
 
@@ -37,10 +37,10 @@ runOnce stalonetray
 runOnce shutter --min_at_startup
 
 # Pidgin
-runOnce pidgin
+# runOnce pidgin
 
 # Default Browser
-runOnce `update-alternatives --query x-www-browser | grep "Value:" | awk '{print $2}'`
+# runOnce `update-alternatives --query x-www-browser | grep "Value:" | awk '{print $2}'`
 
 # Gnome Authentication Agent so apps can request sudo access
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
@@ -48,4 +48,3 @@ runOnce `update-alternatives --query x-www-browser | grep "Value:" | awk '{print
 if [ -e ./startup-private ]; then
   ./startup-private
 fi
-
