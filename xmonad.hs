@@ -47,6 +47,7 @@ management = [
     className =? "VirtualBox" --> doFullFloat,
     appName =? "This War of Mine" --> doFullFloat,
     appName =? "Tabletop Simulator" --> doFullFloat,
+    className =? "SupremeCommander.exe" --> doFullFloat,
     className =? "Pidgin" --> doShift "3",
     className =? "Google-chrome" --> doShift "2",
     className =? "brave" --> doShift "2",
